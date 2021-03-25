@@ -14,7 +14,7 @@
    <string>QStackedWidget Slider - ALEX7320</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QStackedWidget" name="miStack">
+   <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
       <x>40</x>

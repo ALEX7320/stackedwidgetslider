@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_PrincipalGXMvpn.ui'
+## Form generated from reading UI file 'ui_PrincipalSdyxwo.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -20,9 +20,9 @@ class Ui_Principal(object):
         Principal.resize(640, 454)
         self.centralwidget = QWidget(Principal)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.miStack = QStackedWidget(self.centralwidget)
-        self.miStack.setObjectName(u"miStack")
-        self.miStack.setGeometry(QRect(40, 70, 561, 291))
+        self.stackedWidget = QStackedWidget(self.centralwidget)
+        self.stackedWidget.setObjectName(u"stackedWidget")
+        self.stackedWidget.setGeometry(QRect(40, 70, 561, 291))
         self.page = QWidget()
         self.page.setObjectName(u"page")
         self.horizontalLayout = QHBoxLayout(self.page)
@@ -70,7 +70,7 @@ class Ui_Principal(object):
 
         self.horizontalLayout.addWidget(self.frame)
 
-        self.miStack.addWidget(self.page)
+        self.stackedWidget.addWidget(self.page)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
         self.gridLayout = QGridLayout(self.page_2)
@@ -166,7 +166,7 @@ class Ui_Principal(object):
 
         self.gridLayout.addWidget(self.frame_2, 0, 0, 1, 1)
 
-        self.miStack.addWidget(self.page_2)
+        self.stackedWidget.addWidget(self.page_2)
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
         self.gridLayout_2 = QGridLayout(self.page_3)
@@ -230,7 +230,7 @@ class Ui_Principal(object):
 
         self.gridLayout_2.addWidget(self.frame_3, 0, 0, 1, 1)
 
-        self.miStack.addWidget(self.page_3)
+        self.stackedWidget.addWidget(self.page_3)
         self.btn1 = QPushButton(self.centralwidget)
         self.btn1.setObjectName(u"btn1")
         self.btn1.setGeometry(QRect(40, 380, 181, 41))
@@ -248,7 +248,7 @@ class Ui_Principal(object):
 
         self.retranslateUi(Principal)
 
-        self.miStack.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Principal)

@@ -1,4 +1,3 @@
-
 # Transición Slider QStackedWidget
 
 Este material fue extraido de [StackOverflow](https://stackoverflow.com/questions/52596386/slide-qstackedwidget-page "StackOverflow") y posteriormente adaptado.
@@ -6,6 +5,7 @@ Este material fue extraido de [StackOverflow](https://stackoverflow.com/question
 **Indice**
   * [Recursos utilizados](#recursos-utilizados)
   * [Registros](#registros)
+    -  [Instanciar](#instanciar)
     -  [Controlador](#controlador)
     -  [Parámetros](#parámetros)
     -  [Condicionamiento y control](#condicionamiento-y-control)
@@ -24,6 +24,15 @@ Este material fue extraido de [StackOverflow](https://stackoverflow.com/question
 
 # Registros
 
+### Instanciar
+
+Primero tenemos que instanciar la clase `Clase_EfectoSlider` pasandole por parametro el stacked que se usara.
+
+Esta clase solo se usara para uno, en caso de tener 2 o mas QStackedWidget, deberemos instaciarlo cuantos Stacked tengamos.
+
+```python
+self.raizefestack = Clase_EfectoSlider(self.raiz.stackedWidget)
+```
 
 ### Controlador
 
@@ -35,17 +44,17 @@ self.ctrl_animacion = False
 ### Parámetros
 ```python
 self.raiz.btn1.clicked.connect(lambda : 
-        self.transicion_stacked(index_final=0, indexSiguientes=[1,2]))
-		
+    self.raizefestack.transicion_stacked(index_final=0, indexSiguientes=[1,2]))
+
 self.raiz.btn2.clicked.connect(lambda : 
-        self.transicion_stacked(index_final=1, indexSiguientes=[2]))
-		
+    self.raizefestack.transicion_stacked(index_final=1, indexSiguientes=[2]))
+
 self.raiz.btn3.clicked.connect(lambda : 
-        self.transicion_stacked(index_final=2, indexSiguientes=[]))
+    self.raizefestack.transicion_stacked(index_final=2, indexSiguientes=[]))
 ```
 
 ```python
-def transicion_stacked(self, index_final, indexSiguientes):
+def transicion_stacked(self, index_final, indexSiguientes=[]):
 ```
 
 index_final: 
@@ -59,7 +68,7 @@ Los index que siguen despues de el indicado del "0" le sigue [1,2], de "1" sigue
 **obtener index actual**
 
 ```python
-index_inicio = self.raiz.miStack.currentIndex()
+index_inicio = self.miStack.currentIndex()
 ```
 
 **condicionamiento**
@@ -99,8 +108,8 @@ self.index_final = index_final
 Para ello es sumamente importante obtener las dimenciones del widget
 
 ```python
-ancho_stk = self.raiz.miStack.width()
-alto_stk = self.raiz.miStack.height()
+ancho_stk = self.miStack.width()
+alto_stk = self.miStack.height()
 ```
 
 **Avance y retroceso**
@@ -135,13 +144,13 @@ efecto_transicion = QEasingCurve.OutCubic
 
 Posicionamiento del widget
 ```python
-self.punto_actual = self.raiz.miStack.widget(self.index_inicio).pos()
-self.punto_final = self.raiz.miStack.widget(self.index_final).pos()
+self.punto_actual = self.miStack.widget(self.index_inicio).pos()
+self.punto_final = self.miStack.widget(self.index_final).pos()
 ```
 mostrar el siguiente widged en la transición
 
 ```python
-self.raiz.miStack.widget(self.index_final).show()
+self.miStack.widget(self.index_final).show()
 ```
 
 obtener punto de referencia
@@ -155,19 +164,19 @@ offset = QPoint(offsetx, offsety)
 Crear un grupo de animacion para la transcicion de los widgets (esta se conectara con `self.realizarAnimacion`)
 
 ```python
-animacion_stack = QParallelAnimationGroup(self.raiz.miStack, finished=self.realizarAnimacion)
+animacion_stack = QParallelAnimationGroup(self.miStack, finished=self.realizarAnimacion)
 ```
 Le agregamos la transcición de  entrada y salida
 
 ```python
 animacion_inicio = QPropertyAnimation(
-    self.raiz.miStack.widget(self.index_inicio),b"pos",
+    self.miStack.widget(self.index_inicio),b"pos",
     duration=velocidad_tansicion, easingCurve=efecto_transicion,
     startValue=self.punto_actual,
     endValue=self.punto_final - offset)
 
 animacion_final = QPropertyAnimation(
-    self.raiz.miStack.widget(self.index_final),b"pos",
+    self.miStack.widget(self.index_final),b"pos",
     duration=velocidad_tansicion, easingCurve=efecto_transicion,
     startValue=self.punto_actual + offset,
     endValue=self.punto_final)
@@ -191,9 +200,9 @@ Tambien una vez finalizado los efectos, el `self.ctrl_animacion` se restablecera
 
 ```python
 def realizarAnimacion(self):
-    self.raiz.miStack.setCurrentIndex(self.index_final) # asignar index
-    self.raiz.miStack.widget(self.index_inicio).hide()
-    self.raiz.miStack.widget(self.index_inicio).move(self.punto_actual)
+    self.miStack.setCurrentIndex(self.index_final) # asignar index
+    self.miStack.widget(self.index_inicio).hide()
+    self.miStack.widget(self.index_inicio).move(self.punto_actual)
 
     # control de transicion (desactivado) /*/*/*/*/*/*/
     self.ctrl_animacion = False
