@@ -2,6 +2,10 @@
 
 Este material fue extraido de [StackOverflow](https://stackoverflow.com/questions/52596386/slide-qstackedwidget-page "StackOverflow") y posteriormente adaptado.
 
+**Actualizaciones**
+- _Corrección de dimensión en las transiciones del Stacked. [26/03/2021]_
+
+
 **Indice**
   * [Recursos utilizados](#recursos-utilizados)
   * [Registros](#registros)
@@ -138,6 +142,12 @@ En la transición podremos encontrar varios tipos en la documentacion de [QEasin
 
 ```python
 efecto_transicion = QEasingCurve.OutCubic
+```
+
+Se establece el tamaño actual de Stacked al proximo widget, esto para evitar un bug visual de proporciones.
+
+```python
+self.miStack.widget(self.index_final).resize(ancho_stk, alto_stk)
 ```
 
 ### Posicionamiento

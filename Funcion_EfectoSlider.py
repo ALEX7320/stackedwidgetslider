@@ -66,6 +66,7 @@ class Clase_EfectoSlider:
         # configuraciones /*/*/*/*/*/*/
         velocidad_tansicion = 600
         efecto_transicion = QEasingCurve.OutCubic # OutCubic | InOutQuint | OutExpo
+        self.miStack.widget(self.index_final).resize(ancho_stk, alto_stk) # establecer tamaño
 
         # posicionamiento del widget /*/*/*/*/*/*/
         self.punto_actual = self.miStack.widget(self.index_inicio).pos()
